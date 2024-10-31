@@ -19,6 +19,7 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
         <RadioGroup
+            android:id="@+id/radioGroup"
             android:layout_height="wrap_content" android:layout_width="wrap_content">
             <RadioButton
                 android:layout_width="wrap_content"
@@ -34,6 +35,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/radioButtonThirdOption"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioButtonFourthOption"/>
 
         </RadioGroup>
 
