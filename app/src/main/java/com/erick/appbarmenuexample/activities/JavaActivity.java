@@ -1,19 +1,24 @@
 package com.erick.appbarmenuexample.activities;
 
-import android.content.Intent;
+import static com.erick.appbarmenuexample.utils.AnswerKey.JAVA_CORRECT_ANSWER_FOR_QUESTION_1;
+import static com.erick.appbarmenuexample.utils.AnswerKey.JAVA_CORRECT_ANSWER_FOR_QUESTION_2;
+import static com.erick.appbarmenuexample.utils.AnswerKey.JAVA_CORRECT_ANSWER_FOR_QUESTION_3;
+
 import android.os.Bundle;
-import android.view.View;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.erick.appbarmenuexample.R;
+import com.erick.appbarmenuexample.utils.NavigationUtils;
+import com.erick.appbarmenuexample.utils.QuizUtils;
 import com.erick.appbarmenuexample.utils.ToolbarUtil;
 
 public class JavaActivity extends AppCompatActivity {
@@ -35,10 +40,6 @@ public class JavaActivity extends AppCompatActivity {
     private TextView textViewQuestion, textViewQuestion2, textViewQuestion3, feedbackTextView1, feedbackTextView2, feedbackTextView3;
     private String[] questions;
     private String[][] options;
-    private int correctAnswerForQuestion1 = 1;
-    private int correctAnswerForQuestion2 = 3;
-    private int correctAnswerForQuestion3 = 2;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,48 +48,43 @@ public class JavaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_java);
 
         Toolbar toolbar = findViewById(R.id.appToolbar);
-        ToolbarUtil.setupToolbar(this, toolbar, "");
+        ToolbarUtil.setupToolbar(this, toolbar, "", true);
 
         initUIComponents();
         seeQuestions(0);
         seeQuestions(1);
         seeQuestions(2);
         setupListeners();
+        button.setEnabled(false);
+        setupRadioGroupListeners();
+    }
+
+    private void setupRadioGroupListeners() {
+        radioGroup.setOnCheckedChangeListener((group, checkedId) -> checkAllQuestionsAnswered());
+        radioGroup2.setOnCheckedChangeListener((group, checkedId) -> checkAllQuestionsAnswered());
+        radioGroup3.setOnCheckedChangeListener((group, checkedId) -> checkAllQuestionsAnswered());
+    }
+
+    private void checkAllQuestionsAnswered() {
+        boolean allAnswered = radioGroup.getCheckedRadioButtonId() != -1 &&
+                radioGroup2.getCheckedRadioButtonId() != -1 &&
+                radioGroup3.getCheckedRadioButtonId() != -1;
+
+        button.setEnabled(allAnswered);
     }
 
     private void setupListeners() {
         button.setOnClickListener(view -> {
-            checkAnswer(radioGroup, feedbackTextView1, 0, correctAnswerForQuestion1);
-            checkAnswer(radioGroup2, feedbackTextView2, 1, correctAnswerForQuestion2);
-            checkAnswer(radioGroup3, feedbackTextView3, 2, correctAnswerForQuestion3);
+            QuizUtils.checkAnswer(this, radioGroup, feedbackTextView1, 0, JAVA_CORRECT_ANSWER_FOR_QUESTION_1, options);
+            QuizUtils.checkAnswer(this, radioGroup2, feedbackTextView2, 1, JAVA_CORRECT_ANSWER_FOR_QUESTION_2, options);
+            QuizUtils.checkAnswer(this, radioGroup3, feedbackTextView3, 2, JAVA_CORRECT_ANSWER_FOR_QUESTION_3, options);
 
-            button.setText("Voltar ao Início");
+            button.setText(R.string.voltar_ao_in_cio);
 
             button.setOnClickListener(v -> {
-                Intent intent = new Intent(JavaActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish();
+                NavigationUtils.navigateAndPop(this, MainActivity.class);
             });
         });
-    }
-
-
-    private void checkAnswer(RadioGroup group, TextView feedbackView, int questionIndex, int correctAnswer) {
-        int selectedId = group.getCheckedRadioButtonId();
-        RadioButton selectedRadioButton = findViewById(selectedId);
-
-        if (selectedRadioButton != null) {
-            String answerText = selectedRadioButton.getText().toString();
-            if (answerText.equals(options[questionIndex][correctAnswer])) {
-                feedbackView.setText("Resposta Correta");
-                feedbackView.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
-            } else {
-                feedbackView.setText("Resposta Incorreta");
-                feedbackView.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
-            }
-        } else {
-            Toast.makeText(JavaActivity.this, "Selecione uma opção", Toast.LENGTH_SHORT).show();
-        }
     }
 
     /**
@@ -163,5 +159,14 @@ public class JavaActivity extends AppCompatActivity {
                 getResources().getStringArray(R.array.opcao1),
                 getResources().getStringArray(R.array.opcao2),
         };
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

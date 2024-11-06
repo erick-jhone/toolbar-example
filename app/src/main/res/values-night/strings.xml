@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="quiz_linguagens">Quiz Linguagens</string>
+    <string name="resposta_correta">Resposta Correta</string>
+    <string name="resposta_incorreta">Resposta Incorreta</string>
+    <string name="enviar">Enviar</string>
+    <string name="voltar_ao_in_cio">Voltar ao Início</string>
+</resources>

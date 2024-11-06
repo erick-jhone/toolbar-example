@@ -2,18 +2,20 @@
 <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:id="@+id/appToolbar"
-    android:elevation="4dp"
+    android:fitsSystemWindows="true"
+    android:elevation="22dp"
     android:layout_height="wrap_content">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher"/>
+        android:layout_width="32dp"
+    android:layout_height="32dp"
+    android:src="@drawable/perguntas_e_respostas"
+    android:scaleType="centerInside"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Quiz Linguagens"
+        android:layout_marginStart="8dp"
+        android:text="@string/quiz_linguagens"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
-
-
 </androidx.appcompat.widget.Toolbar>

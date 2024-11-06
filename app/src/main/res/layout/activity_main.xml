@@ -8,4 +8,11 @@
     tools:context=".activities.MainActivity">
 
    <include layout= "@layout/app_toolbar"/>
+
+   <ListView
+       android:id="@+id/listViewQuizOptions"
+       android:layout_width="349dp"
+       android:layout_height="585dp"
+       android:layout_marginHorizontal="16dp"
+       android:layout_marginTop="16dp" />
 </LinearLayout>

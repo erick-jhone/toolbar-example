@@ -1,24 +1,29 @@
 package com.erick.appbarmenuexample.activities;
 
-import android.content.Intent;
+import static com.erick.appbarmenuexample.utils.AnswerKey.C_CORRECT_ANSWER_FOR_QUESTION_1;
+import static com.erick.appbarmenuexample.utils.AnswerKey.C_CORRECT_ANSWER_FOR_QUESTION_2;
+import static com.erick.appbarmenuexample.utils.AnswerKey.C_CORRECT_ANSWER_FOR_QUESTION_3;
+
 import android.os.Bundle;
-import android.view.View;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import com.erick.appbarmenuexample.R;
+import com.erick.appbarmenuexample.utils.NavigationUtils;
+import com.erick.appbarmenuexample.utils.QuizUtils;
 import com.erick.appbarmenuexample.utils.ToolbarUtil;
 
 public class CActivity extends AppCompatActivity {
 
-    private RadioGroup radioGroup, radioGroup2,radioGroup3;
+    private RadioGroup radioGroup, radioGroup2, radioGroup3;
     private RadioButton radioButtonFirstOption,
             radioButtonSecondOption,
             radioButtonThirdOption,
@@ -30,14 +35,13 @@ public class CActivity extends AppCompatActivity {
             radioButtonFirstOption3,
             radioButtonSecondOption3,
             radioButtonThirdOption3,
-            radioButtonFourthOption3;;
+            radioButtonFourthOption3;
+    ;
     private Button button;
     private TextView textViewQuestion, textViewQuestion2, textViewQuestion3, feedbackTextView1, feedbackTextView2, feedbackTextView3;
     private String[] questions;
     private String[][] options;
-    private int correctAnswerForQuestion1 = 1;
-    private int correctAnswerForQuestion2 = 1;
-    private int correctAnswerForQuestion3 = 1;
+
 
 
     @Override
@@ -47,53 +51,45 @@ public class CActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cactivity);
 
         Toolbar toolbar = findViewById(R.id.appToolbar);
-        ToolbarUtil.setupToolbar(this, toolbar, "");
+        ToolbarUtil.setupToolbar(this, toolbar, "", true);
+
         initUIComponents();
         seeQuestions(0);
         seeQuestions(1);
         seeQuestions(2);
         setupListeners();
+        button.setEnabled(false);
+        setupRadioGroupListeners();
+    }
+
+    private void setupRadioGroupListeners() {
+        radioGroup.setOnCheckedChangeListener((group, checkedId) -> checkAllQuestionsAnswered());
+        radioGroup2.setOnCheckedChangeListener((group, checkedId) -> checkAllQuestionsAnswered());
+        radioGroup3.setOnCheckedChangeListener((group, checkedId) -> checkAllQuestionsAnswered());
+    }
+
+    private void checkAllQuestionsAnswered() {
+        boolean allAnswered = radioGroup.getCheckedRadioButtonId() != -1 &&
+                radioGroup2.getCheckedRadioButtonId() != -1 &&
+                radioGroup3.getCheckedRadioButtonId() != -1;
+
+        button.setEnabled(allAnswered);
     }
 
     private void setupListeners() {
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                checkAnswer(radioGroup, feedbackTextView1, 0, correctAnswerForQuestion1);
-                checkAnswer(radioGroup2, feedbackTextView2, 1, correctAnswerForQuestion2);
-                checkAnswer(radioGroup3, feedbackTextView3, 2, correctAnswerForQuestion3);
+        button.setOnClickListener(view -> {
+            QuizUtils.checkAnswer(this, radioGroup, feedbackTextView1, 0, C_CORRECT_ANSWER_FOR_QUESTION_1, options);
+            QuizUtils.checkAnswer(this, radioGroup2, feedbackTextView2, 1, C_CORRECT_ANSWER_FOR_QUESTION_2, options);
+            QuizUtils.checkAnswer(this, radioGroup3, feedbackTextView3, 2, C_CORRECT_ANSWER_FOR_QUESTION_3, options);
 
-                button.setText("Voltar ao Início");
+            button.setText(R.string.voltar_ao_in_cio);
 
-                button.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(CActivity.this, MainActivity.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                });
-            }
+            button.setOnClickListener(v -> {
+                NavigationUtils.navigateAndPop(this, MainActivity.class);
+            });
         });
     }
 
-    private void checkAnswer(RadioGroup group, TextView feedbackView, int questionIndex, int correctAnswer) {
-        int selectedId = group.getCheckedRadioButtonId();
-        RadioButton selectedRadioButton = findViewById(selectedId);
-
-        if (selectedRadioButton != null) {
-            String answerText = selectedRadioButton.getText().toString();
-            if (answerText.equals(options[questionIndex][correctAnswer])) {
-                feedbackView.setText("Resposta Correta");
-                feedbackView.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
-            } else {
-                feedbackView.setText("Resposta Incorreta");
-                feedbackView.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
-            }
-        } else {
-            Toast.makeText(CActivity.this, "Selecione uma opção", Toast.LENGTH_SHORT).show();
-        }
-    }
 
     /**
      * Atualiza a interface do usuário para exibir uma nova pergunta e suas opções de resposta.
@@ -167,5 +163,14 @@ public class CActivity extends AppCompatActivity {
                 getResources().getStringArray(R.array.opcoes_c1),
                 getResources().getStringArray(R.array.opcoes_c2),
         };
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

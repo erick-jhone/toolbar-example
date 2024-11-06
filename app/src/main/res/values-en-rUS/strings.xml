@@ -1,19 +1,23 @@
 <resources>
     <string name="app_name">AppBarMenuExample</string>
-    <string-array name="perguntas">
-        <item>Qual das seguintes afirmações sobre a linguagem Java é verdadeira?</item>
-        <item>Qual é o modificador de acesso que permite que uma classe seja acessada apenas dentro do mesmo pacote?</item>
-        <item>Qual é o método principal que deve ser definido em toda aplicação Java para iniciar a execução?</item>
-    </string-array>
+    <string name="quiz_linguagens">Language Quiz</string>
+    <string name="resposta_correta">Correct Answer</string>
+    <string name="resposta_incorreta">Incorrect Answer</string>
+    <string name="enviar">Test Result</string>
+    <string name="voltar_ao_in_cio">Back to Home</string>
 
+    <string-array name="perguntas">
+        <item>Which of the following statements about the Java language is true?</item>
+        <item>What is the access modifier that allows a class to be accessed only within the same package?</item>
+        <item>What is the main method that must be defined in every Java application to start execution?</item>
+    </string-array>
 
     <string-array name="opcao0">
-        <item>A) Java é uma linguagem compilada que não pode ser executada em diferentes plataformas.</item>
-        <item>B) Java é uma linguagem de programação que utiliza a Máquina Virtual Java (JVM) para executar bytecode.</item>
-        <item>C) Java não suporta programação orientada a objetos.</item>
-        <item>D) Java foi desenvolvido pela Microsoft.</item>
+        <item>A) Java is a compiled language that cannot be run on different platforms.</item>
+        <item>B) Java is a programming language that uses the Java Virtual Machine (JVM) to execute bytecode.</item>
+        <item>C) Java does not support object-oriented programming.</item>
+        <item>D) Java was developed by Microsoft.</item>
     </string-array>
-
 
     <string-array name="opcao1">
         <item>A) public</item>
@@ -22,7 +26,6 @@
         <item>D) default</item>
     </string-array>
 
-
     <string-array name="opcao2">
         <item>A) start()</item>
         <item>B) run()</item>
@@ -30,6 +33,58 @@
         <item>D) execute()</item>
     </string-array>
 
+    <string-array name="perguntas_php">
+        <item>What is the correct way to start a PHP code block?</item>
+        <item>Which of the following options is used to declare a variable in PHP?</item>
+        <item>How can you include the content of one PHP file into another PHP file?</item>
+    </string-array>
 
+    <string-array name="opcoes_php0">
+        <item>A) &lt;php&gt;</item>
+        <item>B) &lt;?php ... ?&gt;</item>
+        <item>C) {php}</item>
+        <item>D) &lt;? ... ?&gt;</item>
+    </string-array>
+
+    <string-array name="opcoes_php1">
+        <item>A) var $variable;</item>
+        <item>B) $variable =;</item>
+        <item>C) declare variable;</item>
+        <item>D) variable $;</item>
+    </string-array>
+
+    <string-array name="opcoes_php2">
+        <item>A) include file.php;</item>
+        <item>B) add file.php;</item>
+        <item>C) require file.php;</item>
+        <item>D) Both A and C</item>
+    </string-array>
+
+    <string-array name="perguntas_c">
+        <item>Which of the following is the correct syntax to print a message in C?</item>
+        <item>What is the keyword used in C to define a constant value?</item>
+        <item>Which data type is used to store a single character in C?</item>
+    </string-array>
+
+    <string-array name="opcoes_c0">
+        <item>A) printf("Hello World");</item>
+        <item>B) print("Hello World");</item>
+        <item>C) cout &lt;&lt; "Hello World";</item>
+        <item>D) System.out.println("Hello World");</item>
+    </string-array>
+
+    <string-array name="opcoes_c1">
+        <item>A) const</item>
+        <item>B) constant</item>
+        <item>C) define</item>
+        <item>D) static</item>
+    </string-array>
+
+    <string-array name="opcoes_c2">
+        <item>A) char</item>
+        <item>B) string</item>
+        <item>C) text</item>
+        <item>D) character</item>
+    </string-array>
 
 </resources>
