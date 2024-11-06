@@ -8,5 +8,4 @@
     tools:context=".activities.MainActivity">
 
    <include layout= "@layout/app_toolbar"/>
-
 </LinearLayout>

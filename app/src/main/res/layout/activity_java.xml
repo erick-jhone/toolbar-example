@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".activities.JavaActivity">
 
     <LinearLayout
@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <!-- Grupo de Pergunta 1 -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -20,7 +21,8 @@
 
         <RadioGroup
             android:id="@+id/radioGroup"
-            android:layout_height="wrap_content" android:layout_width="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -40,18 +42,94 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/radioButtonFourthOption"/>
-
         </RadioGroup>
+        <TextView
+            android:id="@+id/feedbackTextView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@android:color/holo_red_dark"/>
+
+        <!-- Grupo de Pergunta 2 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewQuestion2"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+        <RadioGroup
+            android:id="@+id/radioGroup2"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioButtonFirstOption2"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioButtonSecondOption2"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioButtonThirdOption2"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioButtonFourthOption2"/>
+        </RadioGroup>
+        <TextView
+            android:id="@+id/feedbackTextView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@android:color/holo_red_dark"/>
+
+        <!-- Grupo de Pergunta 3 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/textViewQuestion3"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
+
+        <RadioGroup
+            android:id="@+id/radioGroup3"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content">
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioButtonFirstOption3"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioButtonSecondOption3"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioButtonThirdOption3"/>
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioButtonFourthOption3"/>
+        </RadioGroup>
+        <TextView
+            android:id="@+id/feedbackTextView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@android:color/holo_red_dark"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/buttonQuestion"
             android:text="Enviar"/>
-
-
-
     </LinearLayout>
-
-
 </ScrollView>

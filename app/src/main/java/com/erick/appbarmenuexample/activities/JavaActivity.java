@@ -15,13 +15,27 @@ import com.erick.appbarmenuexample.R;
 
 public class JavaActivity extends AppCompatActivity {
 
-    private RadioGroup radioGroup;
-    private RadioButton radioButtonFirstOption, radioButtonSecondOption, radioButtonThirdOption, radioButtonFourthOption;
+    private RadioGroup radioGroup, radioGroup2,radioGroup3;
+    private RadioButton radioButtonFirstOption,
+            radioButtonSecondOption,
+            radioButtonThirdOption,
+            radioButtonFourthOption,
+            radioButtonFirstOption2,
+            radioButtonSecondOption2,
+            radioButtonThirdOption2,
+            radioButtonFourthOption2,
+            radioButtonFirstOption3,
+            radioButtonSecondOption3,
+            radioButtonThirdOption3,
+            radioButtonFourthOption3;;
     private Button button;
-    private TextView textViewQuestion;
+    private TextView textViewQuestion, textViewQuestion2, textViewQuestion3;
     private String[] questions;
     private String[][] options;
-    private int correctAnswer = 1;
+    private int correctAnswerForQuestion1 = 1;
+    private int correctAnswerForQuestion2 = 1;
+    private int correctAnswerForQuestion3 = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +45,8 @@ public class JavaActivity extends AppCompatActivity {
 
         initUIComponents();
         seeQuestions(0);
+        seeQuestions(1);
+        seeQuestions(2);
         setupListeners();
     }
 
@@ -44,7 +60,7 @@ public class JavaActivity extends AppCompatActivity {
                 if(selectedRadioButton != null) {
                     String question = selectedRadioButton.getText().toString();
                     String answer = "";
-                    if(question.equals(options[0][correctAnswer])){
+                    if(question.equals(options[0][correctAnswerForQuestion1])){
                         answer = "Correto";
                     } else {
                         answer = "Incorreto";
@@ -65,24 +81,56 @@ public class JavaActivity extends AppCompatActivity {
      */
     private void seeQuestions(int questionIndex) {
         String question = questions[questionIndex];
-        textViewQuestion.setText(question);
-        radioGroup.clearCheck();
-        radioButtonFirstOption.setText(options[questionIndex][0]);
-        radioButtonSecondOption.setText(options[questionIndex][1]);
-        radioButtonThirdOption.setText(options[questionIndex][2]);
-        radioButtonFourthOption.setText(options[questionIndex][3]);
+        if(questionIndex == 0) {
+            textViewQuestion.setText(question);
+            radioGroup.clearCheck();
+            radioButtonFirstOption.setText(options[questionIndex][0]);
+            radioButtonSecondOption.setText(options[questionIndex][1]);
+            radioButtonThirdOption.setText(options[questionIndex][2]);
+            radioButtonFourthOption.setText(options[questionIndex][3]);
+        }
+
+        if (questionIndex == 1) {
+            textViewQuestion2.setText(question);
+            radioGroup2.clearCheck();
+            radioButtonFirstOption2.setText(options[questionIndex][0]);
+            radioButtonSecondOption2.setText(options[questionIndex][1]);
+            radioButtonThirdOption2.setText(options[questionIndex][2]);
+            radioButtonFourthOption2.setText(options[questionIndex][3]);
+        }
+
+        if (questionIndex == 2) {
+            textViewQuestion3.setText(question);
+            radioGroup3.clearCheck();
+            radioButtonFirstOption3.setText(options[questionIndex][0]);
+            radioButtonSecondOption3.setText(options[questionIndex][1]);
+            radioButtonThirdOption3.setText(options[questionIndex][2]);
+            radioButtonFourthOption3.setText(options[questionIndex][3]);
+        }
     }
 
     private void initUIComponents() {
 
         radioGroup = findViewById(R.id.radioGroup);
+        radioGroup2 = findViewById(R.id.radioGroup2);
+        radioGroup3 = findViewById(R.id.radioGroup3);
         radioButtonFirstOption = findViewById(R.id.radioButtonFirstOption);
         radioButtonThirdOption = findViewById(R.id.radioButtonThirdOption);
         radioButtonSecondOption = findViewById(R.id.radioButtonSecondOption);
         radioButtonFourthOption = findViewById(R.id.radioButtonFourthOption);
+        radioButtonFirstOption2 = findViewById(R.id.radioButtonFirstOption2);
+        radioButtonThirdOption2 = findViewById(R.id.radioButtonThirdOption2);
+        radioButtonSecondOption2 = findViewById(R.id.radioButtonSecondOption2);
+        radioButtonFourthOption2 = findViewById(R.id.radioButtonFourthOption2);
+        radioButtonFirstOption3 = findViewById(R.id.radioButtonFirstOption3);
+        radioButtonThirdOption3 = findViewById(R.id.radioButtonThirdOption3);
+        radioButtonSecondOption3 = findViewById(R.id.radioButtonSecondOption3);
+        radioButtonFourthOption3 = findViewById(R.id.radioButtonFourthOption3);
 
         button = findViewById(R.id.buttonQuestion);
         textViewQuestion = findViewById(R.id.textViewQuestion);
+        textViewQuestion2 = findViewById(R.id.textViewQuestion2);
+        textViewQuestion3 = findViewById(R.id.textViewQuestion3);
 
         questions = getResources().getStringArray(R.array.perguntas);
         options = getOptions();

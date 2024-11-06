@@ -31,5 +31,58 @@
     </string-array>
 
 
+    <string-array name="perguntas_php">
+        <item>Qual é a forma correta de iniciar um bloco de código PHP?</item>
+        <item>Qual das seguintes opções é usada para declarar uma variável em PHP?</item>
+        <item>Como você pode incluir o conteúdo de um arquivo PHP em outro arquivo PHP?</item>
+    </string-array>
+
+    <string-array name="opcoes_php0">
+        <item>A) &lt;php&gt;</item>
+        <item>B) &lt;?php ... ?&gt;</item>
+        <item>C) {php}</item>
+        <item>D) &lt;? ... ?&gt;</item>
+    </string-array>
+
+    <string-array name="opcoes_php1">
+        <item>A) var $variavel;</item>
+        <item>B) $variavel =;</item>
+        <item>C) declare variavel;</item>
+        <item>D) variavel $;</item>
+    </string-array>
+
+    <string-array name="opcoes_php2">
+        <item>A) include arquivo.php;</item>
+        <item>B) add arquivo.php;</item>
+        <item>C) require arquivo.php;</item>
+        <item>D) Tanto A quanto C</item>
+    </string-array>
+
+    <string-array name="perguntas_c">
+        <item>Qual das seguintes é a sintaxe correta para imprimir uma mensagem em C?</item>
+        <item>Qual é a palavra-chave usada em C para definir um valor constante?</item>
+        <item>Qual tipo de dado é usado para armazenar um único caractere em C?</item>
+    </string-array>
+
+    <string-array name="opcoes_c0">
+        <item>A) printf("Olá Mundo");</item>
+        <item>B) print("Olá Mundo");</item>
+        <item>C) cout &lt;&lt; "Olá Mundo";</item>
+        <item>D) System.out.println("Olá Mundo");</item>
+    </string-array>
+
+    <string-array name="opcoes_c1">
+        <item>A) const</item>
+        <item>B) constant</item>
+        <item>C) define</item>
+        <item>D) static</item>
+    </string-array>
+
+    <string-array name="opcoes_c2">
+        <item>A) char</item>
+        <item>B) string</item>
+        <item>C) text</item>
+        <item>D) character</item>
+    </string-array>
 
 </resources>
