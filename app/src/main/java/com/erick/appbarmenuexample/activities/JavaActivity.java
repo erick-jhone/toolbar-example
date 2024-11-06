@@ -1,5 +1,6 @@
 package com.erick.appbarmenuexample.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,8 +11,10 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.erick.appbarmenuexample.R;
+import com.erick.appbarmenuexample.utils.ToolbarUtil;
 
 public class JavaActivity extends AppCompatActivity {
 
@@ -29,12 +32,12 @@ public class JavaActivity extends AppCompatActivity {
             radioButtonThirdOption3,
             radioButtonFourthOption3;;
     private Button button;
-    private TextView textViewQuestion, textViewQuestion2, textViewQuestion3;
+    private TextView textViewQuestion, textViewQuestion2, textViewQuestion3, feedbackTextView1, feedbackTextView2, feedbackTextView3;
     private String[] questions;
     private String[][] options;
     private int correctAnswerForQuestion1 = 1;
-    private int correctAnswerForQuestion2 = 1;
-    private int correctAnswerForQuestion3 = 1;
+    private int correctAnswerForQuestion2 = 3;
+    private int correctAnswerForQuestion3 = 2;
 
 
     @Override
@@ -42,6 +45,9 @@ public class JavaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_java);
+
+        Toolbar toolbar = findViewById(R.id.appToolbar);
+        ToolbarUtil.setupToolbar(this, toolbar, "");
 
         initUIComponents();
         seeQuestions(0);
@@ -51,27 +57,38 @@ public class JavaActivity extends AppCompatActivity {
     }
 
     private void setupListeners() {
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                int selectedId = radioGroup.getCheckedRadioButtonId();
-                RadioButton selectedRadioButton = findViewById(selectedId);
+        button.setOnClickListener(view -> {
+            checkAnswer(radioGroup, feedbackTextView1, 0, correctAnswerForQuestion1);
+            checkAnswer(radioGroup2, feedbackTextView2, 1, correctAnswerForQuestion2);
+            checkAnswer(radioGroup3, feedbackTextView3, 2, correctAnswerForQuestion3);
 
-                if(selectedRadioButton != null) {
-                    String question = selectedRadioButton.getText().toString();
-                    String answer = "";
-                    if(question.equals(options[0][correctAnswerForQuestion1])){
-                        answer = "Correto";
-                    } else {
-                        answer = "Incorreto";
-                    }
-                    Toast.makeText(JavaActivity.this, answer, Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(JavaActivity.this, "Selecione uma opção", Toast.LENGTH_SHORT).show();
-                }
+            button.setText("Voltar ao Início");
 
-            }
+            button.setOnClickListener(v -> {
+                Intent intent = new Intent(JavaActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            });
         });
+    }
+
+
+    private void checkAnswer(RadioGroup group, TextView feedbackView, int questionIndex, int correctAnswer) {
+        int selectedId = group.getCheckedRadioButtonId();
+        RadioButton selectedRadioButton = findViewById(selectedId);
+
+        if (selectedRadioButton != null) {
+            String answerText = selectedRadioButton.getText().toString();
+            if (answerText.equals(options[questionIndex][correctAnswer])) {
+                feedbackView.setText("Resposta Correta");
+                feedbackView.setTextColor(getResources().getColor(android.R.color.holo_green_dark));
+            } else {
+                feedbackView.setText("Resposta Incorreta");
+                feedbackView.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
+            }
+        } else {
+            Toast.makeText(JavaActivity.this, "Selecione uma opção", Toast.LENGTH_SHORT).show();
+        }
     }
 
     /**
@@ -126,6 +143,10 @@ public class JavaActivity extends AppCompatActivity {
         radioButtonThirdOption3 = findViewById(R.id.radioButtonThirdOption3);
         radioButtonSecondOption3 = findViewById(R.id.radioButtonSecondOption3);
         radioButtonFourthOption3 = findViewById(R.id.radioButtonFourthOption3);
+
+        feedbackTextView1 = findViewById(R.id.feedbackTextView1);
+        feedbackTextView2 = findViewById(R.id.feedbackTextView2);
+        feedbackTextView3 = findViewById(R.id.feedbackTextView3);
 
         button = findViewById(R.id.buttonQuestion);
         textViewQuestion = findViewById(R.id.textViewQuestion);
